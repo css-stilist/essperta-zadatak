@@ -3,12 +3,12 @@
     <div class="container">
       <h1>Ankete</h1>
 
-      <div class="breadcrumbs">
-        <ul>
-          <li>
+      <div>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">
             <a href="#">Ankete</a>
           </li>
-          <li>
+          <li class="breadcrumb-item">
             <a href="#">Nova anketa</a>
           </li>
         </ul>

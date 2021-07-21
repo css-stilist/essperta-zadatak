@@ -1,6 +1,6 @@
 <template>
   <div class="poll-results">
-    <h1>Rezultat</h1>
+    <!-- <h1>Rezultat</h1> -->
   </div>
 </template>
 

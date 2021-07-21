@@ -3,7 +3,9 @@
     <button class="btn btn-action poll-question__edit" type="button" aria-label="Uredi pitanje" @click="edit">
       <span class="material-icons">edit</span>
     </button>
-    <h3 v-html="question.text"></h3>
+    <div>
+      <p><strong>{{order}}.</strong> {{question.text}}</p>
+    </div>
     <ul>
       <li v-for="option, i in question.options" :key="i">
         <label>
@@ -51,5 +53,11 @@ export default {
   position: absolute;
   top: 15px;
   right: 15px;
+}
+
+ul {
+  padding: 0 0 0 1rem;
+  margin: 0;
+  list-style: none;
 }
 </style>

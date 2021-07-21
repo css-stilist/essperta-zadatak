@@ -1,7 +1,8 @@
 <template>
   <div class="poll-question-edit modal" :class="elClass">
-    <div class="question-edit__wrap">
-      <header>
+    <div class="modal-container question-edit__wrap">
+      <header class="modal-header">
+        <h1 class="h3">{{title}}</h1>
         <!-- some actions here -->
       </header>
       <div class="question-edit__body">
@@ -12,24 +13,20 @@
         <ul>
           <li v-for="option,i in editingQuestion.options" :key="i">
             <label>
-              <input type="checkbox">
+              <input :type="inputType">
               <input type="text" v-model="option.text">
               <button class="btn btn-action" type="button" aria-label="Obriši odgovor"><span class="material-icons">close</span></button>
             </label>
           </li>
         </ul>
 
-        <div class="columns">
-          <div class="column">
-            <button type="button" class="btn btn-primary" @click="addOption">
-              <span class="material-icons">add</span> Dodaj odgovor
-            </button>
-          </div>
-          <div class="column">
-            <button type="button" class="btn btn-primary">
-              <span class="material-icons">add</span> Dodaj opciju "Drugo"
-            </button>
-          </div>
+        <div class="option-actions">
+          <button type="button" class="btn btn-primary" @click="addOption">
+            <span class="material-icons">add</span> Dodaj odgovor
+          </button>
+          <button type="button" class="btn btn-primary">
+            <span class="material-icons">add</span> Dodaj opciju "Drugo"
+          </button>
         </div>
 
         <div class="form-group">
@@ -49,7 +46,7 @@
               </label>
             </div>
           </div>
-          <div class="column">
+          <div class="column footer-actions">
             <button class="btn" type="button" @click="cancel">Odustani</button>
             <button class="btn btn-primary" type="button" @click="save">Spremi</button>
           </div>
@@ -83,6 +80,12 @@ export default {
       return {
         active: true,
       };
+    },
+    inputType() {
+      return this.editingQuestion.isMultipleChoice ? 'checkbox' : 'radio';
+    },
+    title() {
+      return this.isNew ? 'Dodaj pitanje' : 'Uredi pitanje';
     },
   },
   created() {
@@ -135,5 +138,33 @@ export default {
 .question-edit__footer {
   padding: 15px;
   border-top: 1px solid #eee;
+}
+
+ul {
+  padding: 0 0 0 1rem;
+  margin: 0.5rem 0 1rem 0;
+  list-style: none;
+}
+
+li input[type="text"] {
+  margin: 0 10px;
+}
+
+.option-actions {
+  display: flex;
+  margin-bottom: 1rem;
+
+  button {
+    margin-right: 10px;
+  }
+}
+
+.footer-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  button {
+    margin-left: 10px;
+  }
 }
 </style>
