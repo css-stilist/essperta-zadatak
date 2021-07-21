@@ -1,28 +1,57 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div class="container">
+      <h1>Ankete</h1>
+
+      <div class="breadcrumbs">
+        <ul>
+          <li>
+            <a href="#">Ankete</a>
+          </li>
+          <li>
+            <a href="#">Nova anketa</a>
+          </li>
+        </ul>
+      </div>
+
+      <poll-steps></poll-steps>
+
+      <poll-add-edit></poll-add-edit>
+
+      <poll-results></poll-results>
+
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import PollSteps from './components/PollSteps.vue';
+import PollAddEdit from './components/PollAddEdit.vue';
+import PollResults from './components/PollResults.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    'poll-steps': PollSteps,
+    'poll-add-edit': PollAddEdit,
+    'poll-results': PollResults,
+  },
+  data() {
+    return {
+      step: 0,
+
+    };
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-action {
+  justify-content: center;
 }
 </style>
