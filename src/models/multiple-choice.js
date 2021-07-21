@@ -4,6 +4,8 @@ export default {
   options: [
     { text: 'Odgovor 1', isCorrect: false, isSelected: false },
   ],
+  other: [],
+  otherText: '',
   hasOther: false,
   isMultipleChoice: true,
   isRequired: true,

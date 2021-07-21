@@ -73,7 +73,7 @@ export default {
       } else { // adding new
         this.isCreatingNew = true;
         this.editingQuestion = cloneDeep(MultipleChoiceModel);
-        this.editingOrder = this.questions.length;
+        this.editingOrder = this.questions.length + 1;
       }
     },
     cancelEditing() {

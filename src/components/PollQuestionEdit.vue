@@ -15,23 +15,39 @@
             <label>
               <input :type="inputType">
               <input type="text" v-model="option.text">
-              <button class="btn btn-action" type="button" aria-label="Obriši odgovor"><span class="material-icons">close</span></button>
+              <button class="btn btn-action" type="button" aria-label="Obriši odgovor" @click="deleteOption(i)">
+                <span class="material-icons">close</span>
+              </button>
+            </label>
+          </li>
+
+          <li v-if="editingQuestion.hasOther">
+            <label>
+              <input :type="inputType">
+              <input type="text" v-model="editingQuestion.other.text">
+              <button class="btn btn-action" type="button" aria-label="Obriši odgovor" @click="deleteOther">
+                <span class="material-icons">close</span>
+              </button>
             </label>
           </li>
         </ul>
+
+        <div v-if="editingQuestion.hasOther">
+          <textarea></textarea>
+        </div>
 
         <div class="option-actions">
           <button type="button" class="btn btn-primary" @click="addOption">
             <span class="material-icons">add</span> Dodaj odgovor
           </button>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" @click="addOther" :disabled="addOtherDisabled">
             <span class="material-icons">add</span> Dodaj opciju "Drugo"
           </button>
         </div>
 
         <div class="form-group">
           <label class="form-switch">
-            <input type="checkbox" v-model="editingQuestion.isMultipleChoice">
+            <input type="checkbox" v-model="editingQuestion.isMultipleChoice" @change="onMultipleChoiceChange">
             <i class="form-icon"></i> Višestruki odabir
           </label>
         </div>
@@ -87,6 +103,9 @@ export default {
     title() {
       return this.isNew ? 'Dodaj pitanje' : 'Uredi pitanje';
     },
+    addOtherDisabled() {
+      return this.editingQuestion.hasOther || !this.editingQuestion.isMultipleChoice;
+    },
   },
   created() {
     if (this.isNew) {
@@ -102,6 +121,26 @@ export default {
         isCorrect: false,
         isSelected: false,
       });
+    },
+    deleteOption(i) {
+      this.editingQuestion.options.splice(i, 1);
+    },
+    addOther() {
+      this.editingQuestion.hasOther = true;
+      this.editingQuestion.other = {
+        text: 'Drugo',
+        isCorrect: false,
+        isSelected: false,
+      };
+    },
+    deleteOther() {
+      this.editingQuestion.hasOther = false;
+      this.editingQuestion.other = {};
+    },
+    onMultipleChoiceChange() {
+      if (!this.editingQuestion.isMultipleChoice) {
+        this.deleteOther();
+      }
     },
     cancel() {
       this.$emit('cancel');

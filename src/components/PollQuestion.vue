@@ -6,13 +6,25 @@
     <div>
       <p><strong>{{order}}.</strong> {{question.text}}</p>
     </div>
+
     <ul>
       <li v-for="option, i in question.options" :key="i">
         <label>
-          <input type="checkbox"> {{option.text}}
+          <input :type="inputType"> {{option.text}}
+        </label>
+      </li>
+
+      <li v-if="question.hasOther">
+        <label>
+          <input :type="inputType"> {{question.other.text}}
         </label>
       </li>
     </ul>
+
+    <div v-if="question.hasOther">
+      <textarea></textarea>
+    </div>
+
   </div>
 </template>
 
@@ -30,6 +42,11 @@ export default {
   props: {
     order: { type: Number, required: true },
     question: { type: Object, required: true },
+  },
+  computed: {
+    inputType() {
+      return this.question.isMultipleChoice ? 'checkbox' : 'radio';
+    },
   },
   methods: {
     edit() {
