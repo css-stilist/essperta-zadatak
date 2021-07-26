@@ -1,44 +1,29 @@
 <template>
   <div id="app">
-    <div class="container">
-      <header class="app-header">
-        <h1>Ankete</h1>
-      </header>
+    <header class="app-header">
+      <h1>Ankete</h1>
+    </header>
 
-      <div>
-        <ul class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Ankete</a>
-          </li>
-          <li class="breadcrumb-item">
-            <a href="#">{{title}}</a>
-          </li>
-        </ul>
-      </div>
-
-      <poll-steps></poll-steps>
-
-      <poll-add-edit></poll-add-edit>
-
-      <poll-results></poll-results>
-
+    <div>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item">
+          <router-link to="/">Ankete</router-link>
+        </li>
+        <li class="breadcrumb-item">
+          <router-link to="/poll/1">{{title}}</router-link>
+        </li>
+      </ul>
     </div>
+
+    <router-view/>
   </div>
 </template>
 
 <script>
-import PollSteps from './components/PollSteps.vue';
-import PollAddEdit from './components/PollAddEdit.vue';
-import PollResults from './components/PollResults.vue';
-import { EventBus } from './components/EventBus';
+import EventBus from './components/EventBus';
 
 export default {
   name: 'App',
-  components: {
-    'poll-steps': PollSteps,
-    'poll-add-edit': PollAddEdit,
-    'poll-results': PollResults,
-  },
   data() {
     return {
       step: 0,
@@ -53,7 +38,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .app-header {
   padding: 15px 0;
 }
@@ -70,4 +55,5 @@ export default {
 .btn-action {
   justify-content: center;
 }
+
 </style>

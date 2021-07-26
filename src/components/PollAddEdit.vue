@@ -41,7 +41,7 @@ import { cloneDeep } from 'lodash-es';
 import PollQuestion from './PollQuestion.vue';
 import PollQuestionEdit from './PollQuestionEdit.vue';
 import MultipleChoiceModel from '../models/multiple-choice';
-import { EventBus } from './EventBus';
+import EventBus from './EventBus';
 
 export default {
   name: 'poll-add-edit',

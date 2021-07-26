@@ -1,12 +1,14 @@
 <template>
-  <div class="poll-results">
-    <h1>Rezultat</h1>
+  <div class="poll">
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'poll-results',
+  name: 'poll',
   data() {
     return {};
   },

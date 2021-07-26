@@ -14,12 +14,13 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
+    "parser": "babel-eslint"
   },
   plugins: [
     'vue',
   ],
   rules: {
-    "import/no-unresolved": "off",
-    "max-len": "off"
+    'import/no-unresolved': 'off',
+    'max-len': 'off',
   },
 };
