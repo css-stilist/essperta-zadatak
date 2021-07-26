@@ -10,21 +10,23 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: '/',
-    name: 'Ankete',
+    name: 'Polls',
     component: Polls,
   },
   {
     path: '/poll',
-    name: 'Anketa',
+    name: 'Poll',
     component: Poll,
     children: [
       {
         path: ':id',
         component: PollAddEdit,
+        name: 'PollAddEdit',
       },
       {
-        path: 'results',
+        path: ':id/results',
         component: PollResults,
+        name: 'PollResults',
       },
     ],
   },
