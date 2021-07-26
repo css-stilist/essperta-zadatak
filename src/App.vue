@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Ankete</h1>
+      <header class="app-header">
+        <h1>Ankete</h1>
+      </header>
 
       <div>
         <ul class="breadcrumb">
@@ -9,7 +11,7 @@
             <a href="#">Ankete</a>
           </li>
           <li class="breadcrumb-item">
-            <a href="#">Nova anketa</a>
+            <a href="#">{{title}}</a>
           </li>
         </ul>
       </div>
@@ -28,6 +30,7 @@
 import PollSteps from './components/PollSteps.vue';
 import PollAddEdit from './components/PollAddEdit.vue';
 import PollResults from './components/PollResults.vue';
+import { EventBus } from './components/EventBus';
 
 export default {
   name: 'App',
@@ -39,13 +42,26 @@ export default {
   data() {
     return {
       step: 0,
-
+      title: 'Nova anketa',
     };
+  },
+  mounted() {
+    EventBus.$on('save-poll-title', (title) => {
+      this.title = title;
+    });
   },
 };
 </script>
 
 <style>
+.app-header {
+  padding: 15px 0;
+}
+
+.container {
+  max-width: 900px;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
